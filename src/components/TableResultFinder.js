@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const TableResultFinder = props => {
+const TableResultFinder = ({ players }) => {
   return(
-    <h2>Tabla, resultado de la busqueda</h2>
+    players.map((e, i) => {
+      const { name } = e;
+      return <p key={i}>{name}</p>
+    })
   )
 };
 
 TableResultFinder.propTypes = {
-
+  players: PropTypes.array.isRequired
 };
 
 export default TableResultFinder;

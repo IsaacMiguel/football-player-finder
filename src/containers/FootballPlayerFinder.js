@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Header from './../components/Header';
 import FinderPlayerForm from './../components/FinderPlayerForm';
 import TableResultFinder from './../components/TableResultFinder';
-import { SELECT_OPTIONS } from './../constants';
+import { SELECT_OPTIONS, COMPONENT_TITLE } from './../constants';
 import { fetchFootballPlayers } from './../actions/fetchFootballPlayers';
 import { getFootballPlayers } from './../selectors/footballPlayer';
 
@@ -28,17 +28,20 @@ class FootballPlayerFinder extends Component {
 
   render() {
     const { players } = this.props;
-    console.log('render props: ', players)
 
     return(
       <div>
-        <Header />
+        <Header
+          title={COMPONENT_TITLE}
+        />
         <FinderPlayerForm 
           onSubmit={this.handleOnSubmit}
           initialValues={initialValues}
           selectOptions={SELECT_OPTIONS}
         />
-        <TableResultFinder />
+        <TableResultFinder 
+          players={players}
+        />
       </div>
     )
   }

@@ -13,3 +13,4 @@ export const SELECT_OPTIONS = [
 ];
 
 export const FETCH_FOOTBAL_PLAYERS = 'FETCH_FOOTBAL_PLAYERS';
+export const COMPONENT_TITLE = 'Football Player Finder';
