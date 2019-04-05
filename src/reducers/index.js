@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import { voidReducer } from './voidReducer';
+import { footballPlayers } from './footballPlayers';
 
 export default combineReducers({
-  voidReducer
+  footballPlayers
 });
