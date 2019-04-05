@@ -33,7 +33,6 @@ export const fetchFootballPlayers = payload =>
     fetch(urlGetFootballPlayers)
       .then(data => (data.json()))
       .then(r => {
-        // console.log(filterPlayers(Object.assign(payload, { players: r })))
         const filtered = filterPlayers(Object.assign(payload, { players: r }));
         dispatch(setPlayers({ players: filtered }))
       })

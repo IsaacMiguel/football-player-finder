@@ -2,28 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik, Field, Form } from 'formik';
 
-const renderOptions = values => values.map(({ value, label }) => <option key={value} value={value} label={label} />)
+const renderOptions = values => 
+  values.map(({ value, label }) => 
+    <option className="option" key={value} value={value} label={label}>{label}</option>
+  )
 
 const FinderPlayerForm = ({ onSubmit, initialValues, selectOptions }) => {
   return(
-    <Formik
+    <div className="container">
+      <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         render={({ errors, status, touched, isSubmitting }) => (
           <Form>
-            <Field type="text" name="playerName" placeholder="Player Name"/>
-            <Field component="select" name="position">
-              {
-                renderOptions(selectOptions)
-              }
-            </Field>
-            <Field type="text" name="age" placeholder="Age" />
-            <button type="submit" disabled={isSubmitting}>
-              Search
-            </button>
+            <div className="level">
+              <Field className="input" type="text" name="playerName" placeholder="Player Name" />
+              <div className="select">
+                <Field component="select" name="position">
+                  {
+                    renderOptions(selectOptions)
+                  }
+                </Field>
+              </div>
+              <Field className="input" type="text" name="age" placeholder="Age" />
+              <button className="button" type="submit" disabled={isSubmitting}>
+                Search
+              </button>
+            </div>
           </Form>
         )}
       />
+    </div>
   )
 };
 
