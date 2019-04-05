@@ -21,12 +21,14 @@ class FootballPlayerFinder extends Component {
   }
 
   handleOnSubmit = (values, actions) => {
-    setTimeout(() => { 
-      console.log(values)
-      console.log('llamada a la api')
-      this.props.fetchFootballPlayers();
-      actions.setSubmitting(false); 
-    }, 1000);
+    actions.setSubmitting(false);
+    console.log(values)
+    this.props.fetchFootballPlayers()
+      .then(data => {
+        const { payload } = data;
+        console.log(payload)
+      })
+      .catch(error => console.log(error))
   }
 
   render() {

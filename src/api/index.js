@@ -5,6 +5,6 @@ export const apiGetFootballPlayers = (url) => () =>
   .then(r => {
     const { data } = r;
 
-    console.log(data)
+    return data;
   })
   .catch(err => console.log("err: ", err))
