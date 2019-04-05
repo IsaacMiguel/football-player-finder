@@ -6,6 +6,7 @@ import FinderPlayerForm from './../components/FinderPlayerForm';
 import TableResultFinder from './../components/TableResultFinder';
 import { SELECT_OPTIONS } from './../constants';
 import { fetchFootballPlayers } from './../actions/fetchFootballPlayers';
+import { getFootballPlayers } from './../selectors/footballPlayer';
 
 const initialValues = {
   playerName: '', // ex: Leonel Messi
@@ -21,17 +22,14 @@ class FootballPlayerFinder extends Component {
   }
 
   handleOnSubmit = (values, actions) => {
+    this.props.dispatchFetchPlayers(values)
     actions.setSubmitting(false);
-    console.log(values)
-    this.props.fetchFootballPlayers()
-      .then(data => {
-        const { payload } = data;
-        console.log(payload)
-      })
-      .catch(error => console.log(error))
   }
 
   render() {
+    const { players } = this.props;
+    console.log('render props: ', players)
+
     return(
       <div>
         <Header />
@@ -47,11 +45,16 @@ class FootballPlayerFinder extends Component {
 };
 
 FootballPlayerFinder.propTypes = {
-  fetchFootballPlayers: PropTypes.func.isRequired
+  dispatchFetchPlayers: PropTypes.func.isRequired,
+  players: PropTypes.array.isRequired
 };
 
-const mapDispatchToProps = {
-  fetchFootballPlayers
-};
+const mapStateToProps = state => ({
+  players: getFootballPlayers(state)
+});
 
-export default connect(null, mapDispatchToProps)(FootballPlayerFinder);
+const mapDispatchToProps = dispatch => ({
+  dispatchFetchPlayers: value => dispatch(fetchFootballPlayers(value))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FootballPlayerFinder);
