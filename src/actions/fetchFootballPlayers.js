@@ -7,11 +7,11 @@ const ageFromDate = dateOfBirth => moment().diff(dateOfBirth, 'years');
 
 /**
  * Filtramos el resultado de la api por la busqueda ingresada
- * @param { Object } objeto - payload de la busqueda
- * @param { String } objeto.playerName - Nombre del jugador
- * @param { String } objeto.position - Posicion del jugador
- * @param { Number } objeto.age - edad del jugador
- * @return { Array } busqueda filtrada
+ * @param { String } playerName - Nombre del jugador
+ * @param { String } position - Posicion del jugador
+ * @param { Number } age - edad del jugador
+ * @param { Array } players - listado de jugadores a filtrar
+ * @return { Array } filter - resultado de la busqueda
  */
 const filterPlayers = ({ playerName, position, age, players }) => {
   const filter = players.reduce((acc, current) => {
